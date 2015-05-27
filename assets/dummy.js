@@ -6,11 +6,12 @@ define('dummy/app', ['exports', 'ember', 'ember/resolver', 'ember/load-initializ
 
   'use strict';
 
+  var App;
+
   Ember['default'].MODEL_FACTORY_INJECTIONS = true;
 
-  var App = Ember['default'].Application.extend({
+  App = Ember['default'].Application.extend({
     modulePrefix: config['default'].modulePrefix,
-    podModulePrefix: config['default'].podModulePrefix,
     Resolver: Resolver['default']
   });
 
@@ -159,6 +160,13 @@ define('dummy/components/paper-toolbar', ['exports', 'ember-paper/components/pap
 	exports['default'] = PaperToolbar['default'];
 
 });
+define('dummy/controllers/array', ['exports', 'ember'], function (exports, Ember) {
+
+	'use strict';
+
+	exports['default'] = Ember['default'].Controller;
+
+});
 define('dummy/controllers/checkbox', ['exports', 'ember'], function (exports, Ember) {
 
   'use strict';
@@ -210,6 +218,13 @@ define('dummy/controllers/list', ['exports', 'ember'], function (exports, Ember)
       notes: 'this is a message for you about ember'
     }])
   });
+
+});
+define('dummy/controllers/object', ['exports', 'ember'], function (exports, Ember) {
+
+	'use strict';
+
+	exports['default'] = Ember['default'].Controller;
 
 });
 define('dummy/controllers/switch', ['exports', 'ember'], function (exports, Ember) {
@@ -502,7 +517,7 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     location: config['default'].locationType
   });
 
-  exports['default'] = Router.map(function () {
+  Router.map(function () {
     this.route('introduction');
     this.route('button');
     this.route('card');
@@ -517,6 +532,8 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     this.route('toolbar');
     this.route('icons');
   });
+
+  exports['default'] = Router;
 
 });
 define('dummy/routes/application', ['exports', 'ember'], function (exports, Ember) {
@@ -563,7 +580,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
         var child0 = (function() {
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -626,7 +643,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child0 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -662,7 +679,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child1 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -698,7 +715,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child2 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -734,7 +751,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child3 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -770,7 +787,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child4 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -806,7 +823,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child5 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -842,7 +859,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child6 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -878,7 +895,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child7 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -914,7 +931,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child8 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -950,7 +967,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child9 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -986,7 +1003,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child10 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -1022,7 +1039,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child11 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -1058,7 +1075,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var child12 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -1093,7 +1110,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
           }());
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -1247,7 +1264,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
         }());
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -1295,7 +1312,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
       var child1 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -1337,7 +1354,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -1385,7 +1402,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -1447,7 +1464,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -1489,7 +1506,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -1546,7 +1563,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -1582,7 +1599,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
       var child1 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -1618,7 +1635,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
       var child2 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -1654,7 +1671,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
       var child3 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -1690,7 +1707,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
       var child4 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -1726,7 +1743,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
       var child5 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -1762,7 +1779,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
       var child6 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -1798,7 +1815,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
       var child7 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -1835,7 +1852,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
         var child0 = (function() {
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -1871,7 +1888,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
         var child1 = (function() {
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -1907,7 +1924,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
         var child2 = (function() {
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -1942,7 +1959,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
         }());
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -2003,7 +2020,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -2137,7 +2154,7 @@ define('dummy/templates/button', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -2190,7 +2207,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -2232,7 +2249,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -2291,7 +2308,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
           var child0 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -2338,7 +2355,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
           }());
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -2347,7 +2364,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
               var el1 = dom.createTextNode("      ");
               dom.appendChild(el0, el1);
               var el1 = dom.createElement("img");
-              dom.setAttribute(el1,"src","https://material.angularjs.org/img/washedout.png");
+              dom.setAttribute(el1,"src","washedout.png");
               dom.setAttribute(el1,"alt","Washed Out");
               dom.appendChild(el0, el1);
               var el1 = dom.createTextNode("\n");
@@ -2387,7 +2404,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
           var child0 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -2434,7 +2451,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
           }());
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -2443,7 +2460,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
               var el1 = dom.createTextNode("      ");
               dom.appendChild(el0, el1);
               var el1 = dom.createElement("img");
-              dom.setAttribute(el1,"src","https://material.angularjs.org/img/washedout.png");
+              dom.setAttribute(el1,"src","washedout.png");
               dom.setAttribute(el1,"alt","Washed Out");
               dom.appendChild(el0, el1);
               var el1 = dom.createTextNode("\n");
@@ -2483,7 +2500,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
           var child0 = (function() {
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -2530,7 +2547,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
           }());
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -2539,7 +2556,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
               var el1 = dom.createTextNode("      ");
               dom.appendChild(el0, el1);
               var el1 = dom.createElement("img");
-              dom.setAttribute(el1,"src","https://material.angularjs.org/img/washedout.png");
+              dom.setAttribute(el1,"src","washedout.png");
               dom.setAttribute(el1,"alt","Washed Out");
               dom.appendChild(el0, el1);
               var el1 = dom.createTextNode("\n");
@@ -2577,7 +2594,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
         }());
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -2625,7 +2642,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -2646,7 +2663,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
           var el2 = dom.createTextNode("\n  ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("pre");
-          var el3 = dom.createTextNode("\n  {{#paper-card}}\n    <img src=\"https://material.angularjs.org/img/washedout.png\" alt=\"Washed Out\">\n    {{#paper-card-content}}\n      <h2>Paracosm</h2>\n      <p>\n        The titles of Washed Out's breakthrough song and the first single from Paracosm share the\n        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...\n      </p>\n    {{/paper-card-content}}\n  {{/paper-card}}\n  ");
+          var el3 = dom.createTextNode("\n  {{#paper-card}}\n    <img src=\"washedout.png\" alt=\"Washed Out\">\n    {{#paper-card-content}}\n      <h2>Paracosm</h2>\n      <p>\n        The titles of Washed Out's breakthrough song and the first single from Paracosm share the\n        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...\n      </p>\n    {{/paper-card-content}}\n  {{/paper-card}}\n  ");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n");
@@ -2684,7 +2701,7 @@ define('dummy/templates/card', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -2739,7 +2756,7 @@ define('dummy/templates/checkbox', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -2781,7 +2798,7 @@ define('dummy/templates/checkbox', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -2838,7 +2855,7 @@ define('dummy/templates/checkbox', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -2881,7 +2898,7 @@ define('dummy/templates/checkbox', ['exports'], function (exports) {
         var child0 = (function() {
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -2917,7 +2934,7 @@ define('dummy/templates/checkbox', ['exports'], function (exports) {
         var child1 = (function() {
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -2952,7 +2969,7 @@ define('dummy/templates/checkbox', ['exports'], function (exports) {
         }());
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -2994,7 +3011,7 @@ define('dummy/templates/checkbox', ['exports'], function (exports) {
       var child2 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -3030,7 +3047,7 @@ define('dummy/templates/checkbox', ['exports'], function (exports) {
       var child3 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -3066,7 +3083,7 @@ define('dummy/templates/checkbox', ['exports'], function (exports) {
       var child4 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -3101,7 +3118,7 @@ define('dummy/templates/checkbox', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -3191,7 +3208,7 @@ define('dummy/templates/checkbox', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -3242,7 +3259,7 @@ define('dummy/templates/components/base-focusable', ['exports'], function (expor
   exports['default'] = Ember.HTMLBars.template((function() {
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -3291,7 +3308,7 @@ define('dummy/templates/components/paper-button', ['exports'], function (exports
     var child0 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -3334,7 +3351,7 @@ define('dummy/templates/components/paper-button', ['exports'], function (exports
     var child1 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -3376,7 +3393,7 @@ define('dummy/templates/components/paper-button', ['exports'], function (exports
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -3430,7 +3447,7 @@ define('dummy/templates/components/paper-checkbox', ['exports'], function (expor
     var child0 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -3480,7 +3497,7 @@ define('dummy/templates/components/paper-checkbox', ['exports'], function (expor
     var child1 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -3529,7 +3546,7 @@ define('dummy/templates/components/paper-checkbox', ['exports'], function (expor
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -3587,7 +3604,7 @@ define('dummy/templates/components/paper-nav-container', ['exports'], function (
   exports['default'] = Ember.HTMLBars.template((function() {
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -3642,7 +3659,7 @@ define('dummy/templates/components/paper-radio', ['exports'], function (exports)
     var child0 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -3692,7 +3709,7 @@ define('dummy/templates/components/paper-radio', ['exports'], function (exports)
     var child1 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -3741,7 +3758,7 @@ define('dummy/templates/components/paper-radio', ['exports'], function (exports)
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -3805,7 +3822,7 @@ define('dummy/templates/components/paper-switch', ['exports'], function (exports
     var child0 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -3855,7 +3872,7 @@ define('dummy/templates/components/paper-switch', ['exports'], function (exports
     var child1 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -3904,7 +3921,7 @@ define('dummy/templates/components/paper-switch', ['exports'], function (exports
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -3981,7 +3998,7 @@ define('dummy/templates/components/paper-text', ['exports'], function (exports) 
   exports['default'] = Ember.HTMLBars.template((function() {
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -4040,7 +4057,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -4082,7 +4099,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -4143,7 +4160,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
               var child0 = (function() {
                 return {
                   isHTMLBars: true,
-                  revision: "Ember@1.11.1",
+                  revision: "Ember@1.12.0",
                   blockParams: 0,
                   cachedFragment: null,
                   hasRendered: false,
@@ -4187,7 +4204,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
               var child1 = (function() {
                 return {
                   isHTMLBars: true,
-                  revision: "Ember@1.11.1",
+                  revision: "Ember@1.12.0",
                   blockParams: 0,
                   cachedFragment: null,
                   hasRendered: false,
@@ -4251,7 +4268,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
               }());
               return {
                 isHTMLBars: true,
-                revision: "Ember@1.11.1",
+                revision: "Ember@1.12.0",
                 blockParams: 0,
                 cachedFragment: null,
                 hasRendered: false,
@@ -4297,7 +4314,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
             }());
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -4344,7 +4361,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
           }());
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -4384,7 +4401,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
         }());
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -4429,7 +4446,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
               var child0 = (function() {
                 return {
                   isHTMLBars: true,
-                  revision: "Ember@1.11.1",
+                  revision: "Ember@1.12.0",
                   blockParams: 0,
                   cachedFragment: null,
                   hasRendered: false,
@@ -4473,7 +4490,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
               var child1 = (function() {
                 return {
                   isHTMLBars: true,
-                  revision: "Ember@1.11.1",
+                  revision: "Ember@1.12.0",
                   blockParams: 0,
                   cachedFragment: null,
                   hasRendered: false,
@@ -4537,7 +4554,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
               }());
               return {
                 isHTMLBars: true,
-                revision: "Ember@1.11.1",
+                revision: "Ember@1.12.0",
                 blockParams: 0,
                 cachedFragment: null,
                 hasRendered: false,
@@ -4583,7 +4600,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
             }());
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -4630,7 +4647,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
           }());
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -4670,7 +4687,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
         }());
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -4710,7 +4727,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -4788,7 +4805,7 @@ define('dummy/templates/divider', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -4843,7 +4860,7 @@ define('dummy/templates/icons', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -4885,7 +4902,7 @@ define('dummy/templates/icons', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -4942,7 +4959,7 @@ define('dummy/templates/icons', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -5000,7 +5017,7 @@ define('dummy/templates/icons', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -5090,7 +5107,7 @@ define('dummy/templates/icons', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -5145,7 +5162,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -5187,7 +5204,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -5243,7 +5260,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
     var child1 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -5285,19 +5302,6 @@ define('dummy/templates/index', ['exports'], function (exports) {
           var el3 = dom.createTextNode("Installation");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n  ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("p");
-          var el3 = dom.createTextNode("Temporary workaround. For now you need to run ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("pre");
-          dom.setAttribute(el3,"style","display:inline");
-          var el4 = dom.createTextNode("$ npm install --save-dev broccoli-autoprefixer");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode(" before installing ember-paper.");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n\n  ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("p");
@@ -5321,48 +5325,34 @@ define('dummy/templates/index', ['exports'], function (exports) {
           var el2 = dom.createTextNode("\n\n  ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("p");
-          var el3 = dom.createTextNode("Ember-paper uses sass for its styles. To import them run:");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n\n  ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("div");
-          dom.setAttribute(el2,"class","preview-block");
-          var el3 = dom.createTextNode("\n    ");
-          dom.appendChild(el2, el3);
-          var el3 = dom.createElement("pre");
-          dom.setAttribute(el3,"style","margin:0");
-          var el4 = dom.createTextNode("$ npm install --save-dev broccoli-sass");
-          dom.appendChild(el3, el4);
-          dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n  ");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n\n  ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("p");
-          var el3 = dom.createTextNode("and then create a file in ");
+          var el3 = dom.createTextNode("This should also automatically create an scss file under ");
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("pre");
           dom.setAttribute(el3,"style","display:inline");
           var el4 = dom.createTextNode("app/styles/app.scss");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode(" and import the styles at the beginning of your file:");
-          dom.appendChild(el2, el3);
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n\n  ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createElement("div");
-          dom.setAttribute(el2,"class","preview-block");
-          var el3 = dom.createTextNode("\n    ");
+          var el3 = dom.createTextNode(" with ");
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("pre");
-          dom.setAttribute(el3,"style","margin:0");
+          dom.setAttribute(el3,"style","display:inline");
           var el4 = dom.createTextNode("@import 'ember-paper';");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode("\n  ");
+          var el3 = dom.createTextNode(" and install ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("pre");
+          dom.setAttribute(el3,"style","display:inline");
+          var el4 = dom.createTextNode("ember-cli-sass");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode(".");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n  ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("p");
+          var el3 = dom.createTextNode("Sass is an important part of Ember-paper. Using sass you can override default variables and easily change the default behavior of Ember-paper.");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n\n  ");
@@ -5526,7 +5516,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -5581,7 +5571,7 @@ define('dummy/templates/list', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -5623,7 +5613,7 @@ define('dummy/templates/list', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -5684,7 +5674,7 @@ define('dummy/templates/list', ['exports'], function (exports) {
               var child0 = (function() {
                 return {
                   isHTMLBars: true,
-                  revision: "Ember@1.11.1",
+                  revision: "Ember@1.12.0",
                   blockParams: 0,
                   cachedFragment: null,
                   hasRendered: false,
@@ -5728,7 +5718,7 @@ define('dummy/templates/list', ['exports'], function (exports) {
               var child1 = (function() {
                 return {
                   isHTMLBars: true,
-                  revision: "Ember@1.11.1",
+                  revision: "Ember@1.12.0",
                   blockParams: 0,
                   cachedFragment: null,
                   hasRendered: false,
@@ -5792,7 +5782,7 @@ define('dummy/templates/list', ['exports'], function (exports) {
               }());
               return {
                 isHTMLBars: true,
-                revision: "Ember@1.11.1",
+                revision: "Ember@1.12.0",
                 blockParams: 0,
                 cachedFragment: null,
                 hasRendered: false,
@@ -5838,7 +5828,7 @@ define('dummy/templates/list', ['exports'], function (exports) {
             }());
             return {
               isHTMLBars: true,
-              revision: "Ember@1.11.1",
+              revision: "Ember@1.12.0",
               blockParams: 0,
               cachedFragment: null,
               hasRendered: false,
@@ -5878,7 +5868,7 @@ define('dummy/templates/list', ['exports'], function (exports) {
           }());
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -5918,7 +5908,7 @@ define('dummy/templates/list', ['exports'], function (exports) {
         }());
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -5958,7 +5948,7 @@ define('dummy/templates/list', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -6017,7 +6007,7 @@ define('dummy/templates/list', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -6072,7 +6062,7 @@ define('dummy/templates/radio', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -6114,7 +6104,7 @@ define('dummy/templates/radio', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -6171,7 +6161,7 @@ define('dummy/templates/radio', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -6207,7 +6197,7 @@ define('dummy/templates/radio', ['exports'], function (exports) {
       var child1 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -6243,7 +6233,7 @@ define('dummy/templates/radio', ['exports'], function (exports) {
       var child2 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -6279,7 +6269,7 @@ define('dummy/templates/radio', ['exports'], function (exports) {
       var child3 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -6315,7 +6305,7 @@ define('dummy/templates/radio', ['exports'], function (exports) {
       var child4 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -6351,7 +6341,7 @@ define('dummy/templates/radio', ['exports'], function (exports) {
       var child5 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -6386,7 +6376,7 @@ define('dummy/templates/radio', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -6528,7 +6518,7 @@ define('dummy/templates/radio', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -6583,7 +6573,7 @@ define('dummy/templates/sidenav', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -6625,7 +6615,7 @@ define('dummy/templates/sidenav', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -6681,7 +6671,7 @@ define('dummy/templates/sidenav', ['exports'], function (exports) {
     var child1 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -6739,7 +6729,7 @@ define('dummy/templates/sidenav', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -6794,7 +6784,7 @@ define('dummy/templates/switch', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -6836,7 +6826,7 @@ define('dummy/templates/switch', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -6893,7 +6883,7 @@ define('dummy/templates/switch', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -6936,7 +6926,7 @@ define('dummy/templates/switch', ['exports'], function (exports) {
       var child1 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -6979,7 +6969,7 @@ define('dummy/templates/switch', ['exports'], function (exports) {
       var child2 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -7015,7 +7005,7 @@ define('dummy/templates/switch', ['exports'], function (exports) {
       var child3 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -7050,7 +7040,7 @@ define('dummy/templates/switch', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -7140,7 +7130,7 @@ define('dummy/templates/switch', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -7195,7 +7185,7 @@ define('dummy/templates/textfield', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -7237,7 +7227,7 @@ define('dummy/templates/textfield', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -7293,7 +7283,7 @@ define('dummy/templates/textfield', ['exports'], function (exports) {
     var child1 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -7407,7 +7397,7 @@ define('dummy/templates/textfield', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -7462,7 +7452,7 @@ define('dummy/templates/toolbar', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -7504,7 +7494,7 @@ define('dummy/templates/toolbar', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -7562,7 +7552,7 @@ define('dummy/templates/toolbar', ['exports'], function (exports) {
         var child0 = (function() {
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -7598,7 +7588,7 @@ define('dummy/templates/toolbar', ['exports'], function (exports) {
         var child1 = (function() {
           return {
             isHTMLBars: true,
-            revision: "Ember@1.11.1",
+            revision: "Ember@1.12.0",
             blockParams: 0,
             cachedFragment: null,
             hasRendered: false,
@@ -7633,7 +7623,7 @@ define('dummy/templates/toolbar', ['exports'], function (exports) {
         }());
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -7689,7 +7679,7 @@ define('dummy/templates/toolbar', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -7754,7 +7744,7 @@ define('dummy/templates/toolbar', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -7807,7 +7797,7 @@ define('dummy/templates/typography', ['exports'], function (exports) {
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.1",
+          revision: "Ember@1.12.0",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -7849,7 +7839,7 @@ define('dummy/templates/typography', ['exports'], function (exports) {
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -7905,7 +7895,7 @@ define('dummy/templates/typography', ['exports'], function (exports) {
     var child1 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -8451,7 +8441,7 @@ define('dummy/templates/typography', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -9297,7 +9287,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"LOG_ACTIVE_GENERATION":true,"LOG_VIEW_LOOKUPS":true,"name":"ember-paper","version":"0.0.21.efa36ba2"});
+  require("dummy/app")["default"].create({"LOG_ACTIVE_GENERATION":true,"LOG_VIEW_LOOKUPS":true,"name":"ember-paper","version":"0.1.0.09ffafd8"});
 }
 
 /* jshint ignore:end */
