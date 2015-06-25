@@ -94,7 +94,7 @@ test('it is possible to uncheck using spacebar', function(assert) {
   assert.ok(!component.get('checked'));
 });
 
-test('blockless version should set label inside', function(assert) {
+test('blockless version should set label with a span inside', function(assert) {
   var component = this.subject();
   this.render();
 
@@ -102,5 +102,5 @@ test('blockless version should set label inside', function(assert) {
     component.set('label', 'Button');
   });
 
-  assert.equal(this.$('.md-label').html().trim(), 'Button');
+  assert.equal(this.$('.md-label').html().trim(), '<span>Button</span>');
 });
