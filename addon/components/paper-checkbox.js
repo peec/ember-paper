@@ -10,10 +10,11 @@ export default BaseFocusable.extend(RippleMixin, {
   classNameBindings: ['checked:md-checked'],
 
   //Alow element to be focusable by supplying a tabindex 0
-  attributeBindings: ['tabindex'],
+  attributeBindings: ['tabindex', 'role', 'ariaLabel:aria-label'],
   tabindex: Ember.computed('disabled', function() {
     return this.get('disabled') ? '-1' : '0';
   }),
+  role: 'checkbox',
 
   checked: false,
   toggle: true,
@@ -33,5 +34,10 @@ export default BaseFocusable.extend(RippleMixin, {
     if (ev.which === KEY_CODE_SPACE) {
       this.click();
     }
-  }
+  },
+
+  ariaLabel: Ember.computed('label', function () {
+    return this.get("label") || null;
+  })
+
 });
