@@ -8,7 +8,7 @@ var KEY_CODE_SPACE = 32;
 export default BaseFocusable.extend(RippleMixin, {
   tagName: 'md-switch',
   classNames: ['paper-switch', 'md-default-theme'],
-  classNameBindings: ['checked:md-checked', 'dragging:md-dragging'],
+  classNameBindings: ['checked:md-checked', 'dragging:md-dragging', 'focus:md-focused'],
 
   attributeBindings: ['tabindex', 'role', 'ariaLabel:aria-label'],
   tabindex: Ember.computed('disabled', function() {
@@ -21,6 +21,7 @@ export default BaseFocusable.extend(RippleMixin, {
   center: true,
   rippleContainerSelector: '.md-thumb',
 
+  focus: false,
   checked: false,
   disabled: false,
 
