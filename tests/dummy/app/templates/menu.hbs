@@ -1,0 +1,44 @@
+{{#paper-toolbar}}
+    <h2 class="md-toolbar-tools">
+      {{#paper-sidenav-toggle class="menu-sidenav-toggle"}}
+        {{paper-icon icon="menu"}}
+      {{/paper-sidenav-toggle}}
+        <span>Menu</span>
+    </h2>
+{{/paper-toolbar}}
+
+{{#paper-content classNames="md-padding"}}
+  <div class="doc-content">
+    <h3>Simple dropdown menu</h3>
+
+
+    <div layout-align="center center" layout="column">
+      {{#paper-menu as |menu|}}
+        {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon icon="local-phone"}}{{/paper-button}}
+        {{#if menu.visible}}
+          {{#paper-menu-content menu=menu width=4}}
+
+            {{#paper-menu-item}}
+              {{#paper-button}}{{paper-icon icon="local-phone"}} Call{{/paper-button}}
+            {{/paper-menu-item}}
+
+            {{#paper-menu-item}}
+              {{#paper-button}}{{paper-icon icon="local-phone"}} Call{{/paper-button}}
+            {{/paper-menu-item}}
+
+              <md-menu-divider></md-menu-divider>
+
+            {{#paper-menu-item}}
+              {{#paper-button}}{{paper-icon icon="local-phone"}} Call{{/paper-button}}
+            {{/paper-menu-item}}
+
+          {{/paper-menu-content}}
+        {{/if}}
+      {{/paper-menu}}
+    </div>
+
+<h3>Template</h3>
+{{#code-block language='handlebars'}}
+{{/code-block}}
+  </div>
+{{/paper-content}}
