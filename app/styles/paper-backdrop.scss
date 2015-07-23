@@ -1,24 +1,11 @@
-md-nav-container {
-
-  md-backdrop {
-    &.ng-leave {
-      opacity: 0;
-    }
-    pointer-events: none;
-  }
-
-  &.sidenav-expanded {
-    md-backdrop {
-      pointer-events: auto;
-      //animation: $swift-ease-out-timing-function mdBackdropFadeOut 0.5s both;
-    }
-  }
-}
-
-
-// angular material styles
 md-backdrop {
   z-index: $z-index-backdrop;
+  &.md-menu-backdrop {
+    z-index: $z-index-menu - 1;
+  }
+  &.md-select-backdrop {
+    z-index: $z-index-dialog + 1;
+  }
   &.md-dialog-backdrop {
     z-index: $z-index-dialog - 1;
   }
@@ -29,34 +16,43 @@ md-backdrop {
     z-index: $z-index-sidenav - 1;
   }
 
+  opacity: 1;
+  transition: background-color 500ms $swift-ease-in-timing-function;
+
   background-color: rgba(0,0,0,0);
 
-  position: fixed;
+  position: absolute;
+  top:0;
+  bottom:0;
   left: 0;
-  top: 0;
   right: 0;
-  bottom: 0;
 
-  &.ng-enter {
-    animation: $swift-ease-out-timing-function mdBackdropFadeIn 0.5s both;
+  &.md-click-catcher {
+    position: fixed;
   }
-  &.ng-leave {
-    animation: $swift-ease-in-timing-function mdBackdropFadeOut 0.2s both;
+
+  &.md-opaque.ng-enter {
+    background-color: rgba(0,0,0,0);
+
+    &.md-opaque.ng-enter-active {
+      background-color: rgba(0,0,0,0.42);
+    }
   }
+
+  &.md-opaque.ng-leave {
+    transition: background-color 400ms linear;
+
+    &.md-opaque.ng-leave-active {
+      background-color: rgba(0,0,0,0);
+    }
+  }
+
+  &.md-opaque {
+    background-color: rgba(0,0,0,0.42);
+  }
+
 }
 
-@keyframes mdBackdropFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes mdBackdropFadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-// THEME
-$backdrop-color: rgba(0,0,0,0.3);
-
-md-backdrop.md-opaque.md-default-theme {
-  background-color: $backdrop-color;
+md-backdrop.md-opaque.md-#{$theme-name}-theme {
+  background-color: color($foreground, '4');
 }
