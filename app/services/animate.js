@@ -91,7 +91,7 @@ export default Ember.Service.extend({
   calculateZoomToOrigin: function (element, originator) {
     var origin = originator.element;
     var zoomTemplate = "translate3d( {centerX}px, {centerY}px, 0 ) scale( {scaleX}, {scaleY} )";
-    var buildZoom = angular.bind(null, this.get('util').supplant, zoomTemplate);
+    var buildZoom = this.supplant.bind(null, zoomTemplate);
     var zoomStyle = buildZoom({centerX: 0, centerY: 0, scaleX: 0.5, scaleY: 0.5});
 
     if (origin) {
@@ -118,7 +118,7 @@ export default Ember.Service.extend({
    */
   toTransformCss: function (transform, addTransition) {
     var css = {};
-    angular.forEach(this.get('constants').get('CSS').TRANSFORM.split(' '), function (key) {
+    this.get('constants').get('CSS').TRANSFORM.split(' ').forEach(function (value, key) {
       css[key] = transform;
     });
 
@@ -135,7 +135,7 @@ export default Ember.Service.extend({
 
     destination = destination || {};
 
-    angular.forEach('left top right bottom width height'.split(' '), function (key) {
+    'left top right bottom width height'.split(' ').forEach(function (value, key) {
       destination[key] = Math.round(source[key])
     });
 
@@ -149,7 +149,7 @@ export default Ember.Service.extend({
    * Calculate ClientRect of element; return null if hidden or zero size
    */
   clientRect: function (element) {
-    var bounds = angular.element(element)[0].getBoundingClientRect();
+    var bounds = Ember.$(element)[0].getBoundingClientRect();
     var isPositiveSizeClientRect = function (rect) {
       return rect && (rect.width > 0) && (rect.height > 0);
     };
@@ -166,6 +166,24 @@ export default Ember.Service.extend({
       x: Math.round(targetRect.left + (targetRect.width / 2)),
       y: Math.round(targetRect.top + (targetRect.height / 2))
     }
+  },
+
+
+  /**
+   * @todo Move to "util" service
+   */
+  supplant : function( template, values, pattern ) {
+    pattern = pattern || /\{([^\{\}]*)\}/g;
+    return template.replace(pattern, function(a, b) {
+      var p = b.split('.'),
+        r = values;
+      try {
+        for (var s in p) { r = r[p[s]];  }
+      } catch(e){
+        r = a;
+      }
+      return (typeof r === 'string' || typeof r === 'number') ? r : a;
+    });
   }
 
 });
