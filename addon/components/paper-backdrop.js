@@ -21,7 +21,8 @@ export default Ember.Component.extend({
     this.set('tapHammer', hammer);
   }),
 
-  onTap () {
+  onTap (e) {
+    e.preventDefault();
 
     this.sendAction('tap');
   }
