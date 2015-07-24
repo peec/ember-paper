@@ -1,13 +1,11 @@
 import Ember from 'ember';
-import PaperMenuContainer from './paper-menu-container';
+import PaperMenuAbstract from './paper-menu-abstract';
 
 
-export default Ember.Component.extend({
+export default PaperMenuAbstract.extend({
   tagName: 'md-menu',
-
-  e: Ember.on('init', function () {
-    this.get('menuContainer').set('pane', this);
-  })
+  interaction: true,
+  wrapperClass: 'md-open-menu-container'
 
 
 });

@@ -6,56 +6,30 @@ var MENU_EDGE_MARGIN = 8;
 export default Ember.Component.extend({
   tagName: 'div',
 
+  visible: false,
+  position: 'target',
+  offset: '0 0',
+
 
   animate: Ember.inject.service(),
   constants: Ember.inject.service(),
 
 
-
-  visible: false,
-  position: 'target',
-  offset: '0 0',
-
   actions: {
     toggleMenu: function () {
       var _self = this;
       if (this.get('visible')) {
-        // Failcase:
-        if (!this.get('activeWrapper')) {
-          this.set('visible', false);
-          return;
-        }
-
-        this.set('queueShowTransition', false);
-        this.get('animate').waitTransitionEnd(this.get('activeWrapper').$(), { timeout: 370 }).then(function () {
+        this.get('activeWrapper').hideWrapper().then(function () {
           _self.set('visible', false);
         });
-        this.set('queueDestroyTransition', true);
       } else {
-        this.set('queueDestroyTransition', false);
         this.set('activeWrapper', null);
         this.set('visible', true);
       }
     },
-    animateWrapperIn: function (component) {
-      var _self = this;
-
+    registerWrapper: function (component) {
       this.set('activeWrapper', component);
-
-      window.requestAnimationFrame(function () {
-        window.requestAnimationFrame(function () {
-          _self.positionMenu(component.$());
-          window.requestAnimationFrame(function () {
-            _self.set('queueShowTransition', true);
-            component.get('element').style[_self.get('constants').get('CSS').TRANSFORM] = '';
-            _self.get('animate')
-              .waitTransitionEnd(component.$(), {timeout: 370})
-              .then( function(response) {
-                return response;
-              });
-          });
-        });
-      });
+      this.positionMenu(component.$());
     }
   },
 
@@ -68,7 +42,7 @@ export default Ember.Component.extend({
     var containerNode = this.get('activeWrapper').$()[0],
       openMenuNode = el[0].firstElementChild,
       openMenuNodeRect = openMenuNode.getBoundingClientRect(),
-      boundryNode = this.$()[0],
+      boundryNode = Ember.$(this.container.lookup('application:main').get('rootElement'))[0],
       boundryNodeRect = boundryNode.getBoundingClientRect();
 
     var originNode = opts.target[0].querySelector('.md-menu-origin') || opts.target[0],
