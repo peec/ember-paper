@@ -4,81 +4,75 @@ var MENU_EDGE_MARGIN = 8;
 
 
 export default Ember.Component.extend({
+  tagName: 'div',
+
 
   animate: Ember.inject.service(),
   constants: Ember.inject.service(),
 
-  tagName: 'div',
-  classNames: ['md-open-menu-container', 'md-whiteframe-z2', 'md-default-theme', 'md-clickable'],
-  classNameBindings: ['active:md-active'],
-
-  queueDestroy: false,
 
 
-  _init: Ember.on('init', function () {
-    this.get('menu').set('content',this);
-  }),
+  visible: false,
+  position: 'target',
+  offset: '0 0',
 
-  moveComponentToBody: Ember.on('didInsertElement', function () {
-    var dom = this.$().detach();
-    Ember.$('body').append(dom);
-  }),
+  actions: {
+    toggleMenu: function () {
+      var _self = this;
+      if (this.get('visible')) {
+        // Failcase:
+        if (!this.get('activeWrapper')) {
+          this.set('visible', false);
+          return;
+        }
 
-  alreadyOpen: false,
-  menuContentEl: Ember.computed('menu', function ()  {  
-    return this.$().find('md-menu-content');
-  }),
+        this.set('queueShowTransition', false);
+        this.get('animate').waitTransitionEnd(this.get('activeWrapper').$(), { timeout: 370 }).then(function () {
+          _self.set('visible', false);
+        });
+        this.set('queueDestroyTransition', true);
+      } else {
+        this.set('queueDestroyTransition', false);
+        this.set('activeWrapper', null);
+        this.set('visible', true);
+      }
+    },
+    animateWrapperIn: function (component) {
+      var _self = this;
 
-  didInsertElement () {
-    var _self = this;
+      this.set('activeWrapper', component);
 
-    window.requestAnimationFrame(function () {
       window.requestAnimationFrame(function () {
-        _self.positionMenu(_self.$());
         window.requestAnimationFrame(function () {
-          _self.set('active', true);
-          _self.get('element').style[_self.get('constants').get('CSS').TRANSFORM] = '';
-
-          _self.get('animate')
-            .waitTransitionEnd(_self.$(), {timeout: 370})
-            .then( function(response) {
-              return response;
-            });
+          _self.positionMenu(component.$());
+          window.requestAnimationFrame(function () {
+            _self.set('queueShowTransition', true);
+            component.get('element').style[_self.get('constants').get('CSS').TRANSFORM] = '';
+            _self.get('animate')
+              .waitTransitionEnd(component.$(), {timeout: 370})
+              .then( function(response) {
+                return response;
+              });
+          });
         });
       });
-    });
-  },
-
-  click ()  {
-    this.set('queueDestroy', true);
-  },
-
-  destroyObserver: Ember.observer('queueDestroy', function () {
-    var _self = this;
-    if (this.get('queueDestroy')) {
-
-      this.get('animate').waitTransitionEnd(this.$(), { timeout: 370 }).then(function () {
-        _self.get('menu').set('visible', false);
-      });
     }
-  }),
-
+  },
 
   positionMenu(el) {
     var opts = {
-      target: this.get('menu').$().children().first().find('md-icon')
+      target: this.$().find('.md-menu-origin')
     };
 
 
-    var containerNode = el[0],
+    var containerNode = this.get('activeWrapper').$()[0],
       openMenuNode = el[0].firstElementChild,
       openMenuNodeRect = openMenuNode.getBoundingClientRect(),
-      boundryNode = this.get('menu').$()[0],
+      boundryNode = this.$()[0],
       boundryNodeRect = boundryNode.getBoundingClientRect();
 
-    var originNode = opts.target[0].querySelector('[md-menu-origin]') || opts.target[0],
+    var originNode = opts.target[0].querySelector('.md-menu-origin') || opts.target[0],
       originNodeRect = originNode.getBoundingClientRect();
-
 
 
     var bounds = {
@@ -90,9 +84,10 @@ export default Ember.Component.extend({
 
 
     var alignTarget, alignTargetRect, existingOffsets;
-    var positionMode = this.get('menu').get('positionMode');
+    var positionMode = this.get('positionMode');
 
-    if (positionMode.top == 'target' || positionMode.left == 'target' || positionMode.left == 'target-right') {
+
+    if (positionMode.top === 'target' || positionMode.left === 'target' || positionMode.left === 'target-right') {
       // TODO: Allow centering on an arbitrary node, for now center on first menu-item's child
       alignTarget = firstVisibleChild();
       if (!alignTarget) {
@@ -100,7 +95,7 @@ export default Ember.Component.extend({
       }
 
       alignTarget = alignTarget.firstElementChild || alignTarget;
-      alignTarget = alignTarget.querySelector('[md-menu-align-target]') || alignTarget;
+      alignTarget = alignTarget.querySelector('.md-menu-align-target') || alignTarget;
       alignTargetRect = alignTarget.getBoundingClientRect();
 
       existingOffsets = {
@@ -149,7 +144,7 @@ export default Ember.Component.extend({
         throw new Error('Invalid target mode "' + positionMode.left + '" specified for md-menu on X axis.');
     }
 
-    var offsets = this.get('menu').get('offsets');
+    var offsets = this.get('offsets');
     position.top += offsets.top;
     position.left += offsets.left;
 
@@ -183,11 +178,44 @@ export default Ember.Component.extend({
      */
     function firstVisibleChild() {
       for (var i = 0; i < openMenuNode.children.length; ++i) {
-        if (window.getComputedStyle(openMenuNode.children[i]).display != 'none') {
+        if (window.getComputedStyle(openMenuNode.children[i]).display !== 'none') {
           return openMenuNode.children[i];
         }
       }
     }
-  }
+  },
+
+
+  positionMode: Ember.computed('position', function() {
+    var attachment = (this.get('position') || 'target').split(' ');
+
+    // If attachment is a single item, duplicate it for our second value.
+    // ie. 'target' -> 'target target'
+    if (attachment.length === 1) {
+      attachment.push(attachment[0]);
+    }
+
+    return {
+      left: attachment[0],
+      top: attachment[1]
+    };
+  }),
+
+  offsets: Ember.computed('offset', function() {
+    var offsets = (this.get('offset') || '0 0').split(' ').map(parseFloat);
+    if (offsets.length === 2) {
+      return {
+        left: offsets[0],
+        top: offsets[1]
+      };
+    } else if (offsets.length === 1) {
+      return {
+        top: offsets[0],
+        left: offsets[0]
+      };
+    } else {
+      throw Error('Invalid offsets specified. Please follow format <x, y> or <n>');
+    }
+  })
 
 });

@@ -1,17 +1,5 @@
 import Ember from 'ember';
 
-function timeout(promise, seconds){
-  return new Promise(function(resolve, reject){
-    promise.then(resolve, reject);
-
-    if (seconds) {
-      setTimeout(function(){
-        reject(new Error("Timed out"));
-      }, seconds);
-    }
-  });
-}
-
 
 export default Ember.Service.extend({
   constants: Ember.inject.service(),
@@ -57,7 +45,7 @@ export default Ember.Service.extend({
     var TIMEOUT = 3000,
       _self = this; // fallback is 3 secs
 
-    return timeout(new Promise(function(resolve, reject){
+    return new Promise(function(resolve, reject){
       opts = opts || { };
 
       element.on(_self.get('constants').get('CSS').TRANSITIONEND, finished);
@@ -67,15 +55,15 @@ export default Ember.Service.extend({
        * NOTE: Make sure this transitionEnd didn't bubble up from a child
        */
       function finished(ev) {
-        if ( ev && ev.target !== element[0]) return;
         element.off(_self.get('constants').get('CSS').TRANSITIONEND, finished);
+
         if ( ev  ) {
           resolve();
-
+        } else {
         }
       }
 
-    }), opts.timeout || TIMEOUT);
+    });
   },
 
   /**

@@ -13,28 +13,30 @@
 
 
     <div layout-align="center center" layout="column">
-      {{#paper-menu as |menu|}}
-        {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon icon="local-phone"}}{{/paper-button}}
-        {{#if menu.visible}}
-          {{#paper-menu-content menu=menu width=4}}
+      {{#paper-menu-container width=4 position="target-right target" as |handle|}}
+        {{#paper-menu menuContainer=handle}}
+          {{#paper-button target=handle action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
+          {{#if handle.visible}}
+            {{#paper-menu-container-wrap}}
+                <md-menu-content width="4" class="md-default-theme">
+                  {{#paper-menu-item}}
+                    {{#paper-button}}{{paper-icon icon="local-phone" class="md-menu-align-target"}} Call{{/paper-button}}
+                  {{/paper-menu-item}}
 
-            {{#paper-menu-item}}
-              {{#paper-button}}{{paper-icon icon="local-phone"}} Call{{/paper-button}}
-            {{/paper-menu-item}}
+                  {{#paper-menu-item}}
+                    {{#paper-button}}{{paper-icon icon="local-phone"}} Call{{/paper-button}}
+                  {{/paper-menu-item}}
 
-            {{#paper-menu-item}}
-              {{#paper-button}}{{paper-icon icon="local-phone"}} Call{{/paper-button}}
-            {{/paper-menu-item}}
+                    <md-menu-divider></md-menu-divider>
 
-              <md-menu-divider></md-menu-divider>
-
-            {{#paper-menu-item}}
-              {{#paper-button}}{{paper-icon icon="local-phone"}} Call{{/paper-button}}
-            {{/paper-menu-item}}
-
-          {{/paper-menu-content}}
-        {{/if}}
-      {{/paper-menu}}
+                  {{#paper-menu-item}}
+                    {{#paper-button}}{{paper-icon icon="local-phone"}} Call{{/paper-button}}
+                  {{/paper-menu-item}}
+                </md-menu-content>
+            {{/paper-menu-container-wrap}}
+          {{/if}}
+        {{/paper-menu}}
+      {{/paper-menu-container}}
     </div>
 
 <h3>Template</h3>
