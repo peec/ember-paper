@@ -10,7 +10,7 @@ export default Ember.Component.extend({
   animate: Ember.inject.service(),
   constants: Ember.inject.service(),
 
-  classNames: ['md-whiteframe-z2', 'md-default-theme'],
+  classNames: ['md-whiteframe-z2', 'md-default-theme', 'md-open-menu-container'],
   classNameBindings: ['interaction:md-clickable'],
 
 
@@ -32,31 +32,30 @@ export default Ember.Component.extend({
   moveComponentToBody: Ember.on('didInsertElement', function () {
     var _self = this;
     var dom = this.$().detach();
+    this.$().addClass(this.get('abstractComponent').get('wrapperClass'));
     Ember.$('body').append(dom);
-    dom.addClass(this.get('abstractComponent').get('wrapperClass'));
 
 
     var menuContainer = this.get('menuContainer');
 
     window.requestAnimationFrame(function () {
       window.requestAnimationFrame(function () {
-        menuContainer.send('registerWrapper', _self);
+        menuContainer.registerWrapper(_self);
         window.requestAnimationFrame(function () {
-          _self.get('element').style[_self.get('constants').get('CSS').TRANSFORM] = '';
-          _self.get('animate')
-            .waitTransitionEnd(_self.$(), {timeout: 370})
-            .then( function(response) {
-
-            });
           _self.$().addClass('md-active');
+          _self.set('alreadyOpen', true);
+          _self.$()[0].style[_self.get('constants').get('CSS').TRANSFORM] = '';
         });
       });
     });
+
+    _self.get('animate')
+      .waitTransitionEnd(_self.$(), {timeout: 370})
+      .then(function (response) {
+
+      });
   }),
 
-  _interactionObserver: Ember.observer('interaction', function () {
-
-  }),
 
   hideWrapper () {
     var _self = this;
@@ -65,5 +64,10 @@ export default Ember.Component.extend({
       _self.get('animate').waitTransitionEnd(_self.$(), { timeout: 370 }).then(resolve);
       _self.$().removeClass('md-active').addClass('md-leave');
     });
+  },
+  actions: {
+    toggleMenu: function () {
+      this.get('menuContainer').send('toggleMenu');
+    }
   }
 });

@@ -16,6 +16,7 @@ export default Ember.Component.extend({
 
 
   actions: {
+
     toggleMenu: function () {
       var _self = this;
       if (this.get('visible')) {
@@ -26,26 +27,27 @@ export default Ember.Component.extend({
         this.set('activeWrapper', null);
         this.set('visible', true);
       }
-    },
-    registerWrapper: function (component) {
-      this.set('activeWrapper', component);
-      this.positionMenu(component.$());
     }
   },
 
+
+  registerWrapper (component) {
+    this.set('activeWrapper', component);
+    this.positionMenu(component.$());
+  },
+
   positionMenu(el) {
-    var opts = {
-      target: this.$().find('.md-menu-origin')
-    };
-
-
-    var containerNode = this.get('activeWrapper').$()[0],
-      openMenuNode = el[0].firstElementChild,
+    // containerNode = wrapper
+    var containerNode = el[0],
+      // md-menu-content
+      openMenuNode = el[0],
       openMenuNodeRect = openMenuNode.getBoundingClientRect(),
-      boundryNode = Ember.$(this.container.lookup('application:main').get('rootElement'))[0],
+      // body
+      boundryNode = document.body,
       boundryNodeRect = boundryNode.getBoundingClientRect();
 
-    var originNode = opts.target[0].querySelector('.md-menu-origin') || opts.target[0],
+    // icon that opens the menu
+    var originNode = this.$()[0].querySelector('.md-menu-origin'),
       originNodeRect = originNode.getBoundingClientRect();
 
 
@@ -61,14 +63,15 @@ export default Ember.Component.extend({
     var positionMode = this.get('positionMode');
 
 
+
+
     if (positionMode.top === 'target' || positionMode.left === 'target' || positionMode.left === 'target-right') {
       // TODO: Allow centering on an arbitrary node, for now center on first menu-item's child
+      // Icon INSIDE the wrapper.
       alignTarget = firstVisibleChild();
       if (!alignTarget) {
         throw Error('Error positioning menu. No visible children.');
       }
-
-      alignTarget = alignTarget.firstElementChild || alignTarget;
       alignTarget = alignTarget.querySelector('.md-menu-align-target') || alignTarget;
       alignTargetRect = alignTarget.getBoundingClientRect();
 
@@ -77,6 +80,8 @@ export default Ember.Component.extend({
         left: parseFloat(containerNode.style.left || 0)
       };
     }
+
+
 
     var position = {};
     var transformOrigin = 'top ';
@@ -124,19 +129,25 @@ export default Ember.Component.extend({
 
     clamp(position);
 
+
+
+
     el.css({
       top: position.top + 'px',
       left: position.left + 'px'
     });
 
+
+
     containerNode.style[this.get('constants').get('CSS').TRANSFORM_ORIGIN] = transformOrigin;
 
-    // Animate a scale out if we aren't just repositioning
-    containerNode.style[this.get('constants').get('CSS').TRANSFORM] = 'scale(' +
-      Math.min(originNodeRect.width / containerNode.offsetWidth, 1.0) + ',' +
-      Math.min(originNodeRect.height / containerNode.offsetHeight, 1.0) +
-      ')';
-
+    if (!this.get('alreadyOpen')) {
+      // Animate a scale out if we aren't just repositioning
+      containerNode.style[this.get('constants').get('CSS').TRANSFORM] = 'scale(' +
+        Math.min(originNodeRect.width / containerNode.offsetWidth, 1.0) + ',' +
+        Math.min(originNodeRect.height / containerNode.offsetHeight, 1.0) +
+        ')';
+    }
     /**
      * Clamps the repositioning of the menu within the confines of
      * bounding element (often the screen/body)

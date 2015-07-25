@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import PaperMenuAbstract from './paper-menu-abstract';
 
 

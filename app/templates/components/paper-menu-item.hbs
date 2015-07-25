@@ -1,1 +1,7 @@
-{{yield}}
+{{#if action}}
+  {{#paper-button no-span=true action="action"}}
+    {{yield}}
+  {{/paper-button}}
+{{else}}
+  {{yield}}
+{{/if}}
