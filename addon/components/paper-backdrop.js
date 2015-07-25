@@ -12,9 +12,8 @@ export default Ember.Component.extend({
   tapHammer: null,
 
   subscribeToTouchEvents: Ember.on('didInsertElement', function() {
-    var parent = this.get('parentView').get('parentView').$();
     var el = this.$().detach();
-    parent.prepend(el);
+    Ember.$('body').prepend(el);
 
     var hammer = new Hammer(this.get('element'));
     hammer.on('tap', Ember.run.bind(this, this.onTap));
