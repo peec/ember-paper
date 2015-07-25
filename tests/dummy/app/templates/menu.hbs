@@ -11,15 +11,14 @@
 <div class="doc-content">
   <h2>Simple dropdown menu</h2>
 
-  <p>Note that applying the <code class="paper">md-menu-origin</code> and <code class="paper">md-menu-align-target</code>
+  <p>Note that applying the class <code class="paper">.md-menu-origin</code> and <code class="paper">md-menu-align-target</code>
       attributes ensure that the menu elements align</p>
 
   <div layout-align="center center" layout="column">
-    {{#paper-menu-container as |menu|}}
-      {{#paper-menu}}
+      {{#paper-menu as |menu|}}
         {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
         {{#if menu.visible}}
-          {{#paper-menu-container-wrap}}
+          {{#paper-menu-container}}
             {{#paper-menu-content width=4}}
               {{#each items as |item|}}
                 {{#paper-menu-item action="openSomething"}}
@@ -27,10 +26,9 @@
                 {{/paper-menu-item}}
               {{/each}}
             {{/paper-menu-content}}
-          {{/paper-menu-container-wrap}}
+          {{/paper-menu-container}}
         {{/if}}
       {{/paper-menu}}
-    {{/paper-menu-container}}
   </div>
 
 
@@ -42,11 +40,10 @@
 <div layout-align="center center" layout="column">
     <div class="menus" layout-fill="" layout-wrap="" layout="row" layout-align="space-between center">
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
-          {{#paper-menu-container as |menu|}}
-            {{#paper-menu}}
+            {{#paper-menu as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
               {{#if menu.visible}}
-                {{#paper-menu-container-wrap}}
+                {{#paper-menu-container}}
                   {{#paper-menu-content width=4}}
                     {{#each items as |item|}}
                       {{#paper-menu-item action="openSomething"}}
@@ -54,17 +51,15 @@
                       {{/paper-menu-item}}
                     {{/each}}
                   {{/paper-menu-content}}
-                {{/paper-menu-container-wrap}}
+                {{/paper-menu-container}}
               {{/if}}
             {{/paper-menu}}
-          {{/paper-menu-container}}
         </div>
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
-          {{#paper-menu-container offset="0 -5" as |menu|}}
-            {{#paper-menu}}
+            {{#paper-menu offset="0 -5" as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
               {{#if menu.visible}}
-                {{#paper-menu-container-wrap}}
+                {{#paper-menu-container}}
                   {{#paper-menu-content width=4}}
                     {{#each items as |item|}}
                       {{#paper-menu-item action="openSomething"}}
@@ -72,17 +67,15 @@
                       {{/paper-menu-item}}
                     {{/each}}
                   {{/paper-menu-content}}
-                {{/paper-menu-container-wrap}}
+                {{/paper-menu-container}}
               {{/if}}
             {{/paper-menu}}
-          {{/paper-menu-container}}
         </div>
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
-          {{#paper-menu-container position="target-right target" as |menu|}}
-            {{#paper-menu}}
+            {{#paper-menu position="target-right target" as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
               {{#if menu.visible}}
-                {{#paper-menu-container-wrap}}
+                {{#paper-menu-container}}
                   {{#paper-menu-content width=4}}
                     {{#each items as |item|}}
                       {{#paper-menu-item action="openSomething"}}
@@ -91,10 +84,9 @@
                       {{/paper-menu-item}}
                     {{/each}}
                   {{/paper-menu-content}}
-                {{/paper-menu-container-wrap}}
+                {{/paper-menu-container}}
               {{/if}}
             {{/paper-menu}}
-          {{/paper-menu-container}}
         </div>
     </div>
 </div>
@@ -112,11 +104,10 @@
 <div layout-align="center center" layout="column">
     <div class="menus" layout-fill="" layout-wrap="" layout="row" layout-align="space-between center">
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
-          {{#paper-menu-container as |menu|}}
-            {{#paper-menu}}
+            {{#paper-menu as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
               {{#if menu.visible}}
-                {{#paper-menu-container-wrap}}
+                {{#paper-menu-container}}
                   {{#paper-menu-content width=6}}
                     {{#each options as |item|}}
                       {{#paper-menu-item action="openSomething"}}
@@ -124,17 +115,15 @@
                       {{/paper-menu-item}}
                     {{/each}}
                   {{/paper-menu-content}}
-                {{/paper-menu-container-wrap}}
+                {{/paper-menu-container}}
               {{/if}}
             {{/paper-menu}}
-          {{/paper-menu-container}}
         </div>
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
-          {{#paper-menu-container offset="0 -5" as |menu|}}
-            {{#paper-menu}}
+            {{#paper-menu offset="0 -5" as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
               {{#if menu.visible}}
-                {{#paper-menu-container-wrap}}
+                {{#paper-menu-container}}
                   {{#paper-menu-content width=4}}
                     {{#each options as |item|}}
                       {{#paper-menu-item action="openSomething"}}
@@ -142,17 +131,15 @@
                       {{/paper-menu-item}}
                     {{/each}}
                   {{/paper-menu-content}}
-                {{/paper-menu-container-wrap}}
+                {{/paper-menu-container}}
               {{/if}}
             {{/paper-menu}}
-          {{/paper-menu-container}}
         </div>
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
-          {{#paper-menu-container position="target-right target" as |menu|}}
-            {{#paper-menu}}
+            {{#paper-menu position="target-right target" as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
               {{#if menu.visible}}
-                {{#paper-menu-container-wrap}}
+                {{#paper-menu-container}}
                   {{#paper-menu-content width=2}}
                     {{#each options as |item|}}
                       {{#paper-menu-item action="openSomething"}}
@@ -160,10 +147,9 @@
                       {{/paper-menu-item}}
                     {{/each}}
                   {{/paper-menu-content}}
-                {{/paper-menu-container-wrap}}
+                {{/paper-menu-container}}
               {{/if}}
             {{/paper-menu}}
-          {{/paper-menu-container}}
         </div>
     </div>
 </div>

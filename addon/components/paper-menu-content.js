@@ -1,6 +1,5 @@
 import Ember from 'ember';
-import PaperMenuContainer from './paper-menu-container';
-import PaperMenuContainerWrap from './paper-menu-container-wrap';
+import PaperMenuAbstract from './paper-menu-abstract';
 
 export default Ember.Component.extend({
   tagName: 'md-menu-content',
@@ -12,13 +11,8 @@ export default Ember.Component.extend({
   width: 4,
 
 
-  menuContainer: Ember.computed(function () {
-    var container = this.nearestOfType(PaperMenuContainer);
-    return container;
-  }),
-
-  menuContainerWrap: Ember.computed(function () {
-    var container = this.nearestOfType(PaperMenuContainerWrap);
+  menuAbstract: Ember.computed(function () {
+    var container = this.nearestOfType(PaperMenuAbstract);
     return container;
   }),
 
@@ -27,7 +21,7 @@ export default Ember.Component.extend({
     var KeyCodes = this.get('constants').KEYCODE;
     switch(ev.keyCode) {
       case KeyCodes.get('ESCAPE'):
-        this.get('menuContainer').send('toggleMenu');
+        this.get('menuAbstract').send('toggleMenu');
         break;
       case KeyCodes.get('UP_ARROW'):
         this.focusMenuItem(ev, -1);
@@ -83,16 +77,16 @@ export default Ember.Component.extend({
   checkClickTarget(e) {
     var target = e.target;
 
-    // Traverse up the event until we get to the menuContainer to see
+    // Traverse up the event until we get to the menuAbstract to see
     // if there is a click and that the element is not disabled
     do {
-      if (target === this.menuContents) {
+      if (target === this.get('element')) {
         return;
       }
 
       if (target.hasAttribute('action')) {
         if (!target.hasAttribute('disabled')) {
-          this.get('menuContainer').send('toggleMenu');
+          this.get('menuAbstract').send('toggleMenu');
         }
         break;
       }

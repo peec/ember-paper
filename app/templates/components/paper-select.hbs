@@ -1,0 +1,10 @@
+{{paper-select-value value=label}}
+{{#if visible}}
+  {{#paper-menu-container}}
+    <md-select-menu class="md-default-theme">
+      {{#paper-content class="md-default-theme"}}
+        {{yield}}
+      {{/paper-content}}
+    </md-select-menu>
+  {{/paper-menu-container}}
+{{/if}}

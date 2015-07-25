@@ -1,0 +1,33 @@
+{{#paper-toolbar}}
+    <h2 class="md-toolbar-tools">
+      {{#paper-sidenav-toggle class="menu-sidenav-toggle"}}
+        {{paper-icon icon="menu"}}
+      {{/paper-sidenav-toggle}}
+      <span>Select</span>
+    </h2>
+{{/paper-toolbar}}
+
+{{#paper-content classNames="md-padding"}}
+<div class="doc-content">
+  <h3>Basic Usage</h3>
+
+
+    <h1 class="md-title">Enter an address</h1>
+    <div layout="row">
+        {{paper-input label="Street Name" value=street}}
+        {{paper-input label="City" value=city}}
+        {{#paper-select placeholder="State" model=userState}}
+          {{#each states as |state|}}
+            {{#paper-option value=state.abbrev}}
+              {{state.abbrev}}
+            {{/paper-option}}
+          {{/each}}
+        {{/paper-select}}
+    </div>
+
+<h3>Template</h3>
+{{#code-block language='handlebars'}}{{/code-block}}
+
+
+</div>
+{{/paper-content}}
