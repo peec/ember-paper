@@ -54,7 +54,7 @@ export default Ember.Component.extend({
 
     _self.get('animate')
       .waitTransitionEnd(_self.$(), {timeout: 370})
-      .then(function (response) {
+      .then(function (/*response*/) {
 
       });
 
@@ -69,8 +69,7 @@ export default Ember.Component.extend({
 
   hideWrapper () {
     var _self = this;
-    return new Ember.RSVP.Promise(function (resolve, reject) {
-      var menuAbstract = _self.get('menuAbstract');
+    return new Ember.RSVP.Promise(function (resolve/*, reject*/) {
       _self.get('animate').waitTransitionEnd(_self.$(), { timeout: 370 }).then(resolve);
       _self.$().removeClass('md-active').addClass('md-leave');
     });
