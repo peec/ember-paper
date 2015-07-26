@@ -21,6 +21,9 @@ export default Ember.Component.extend({
   /* cache async requests */
   cache: true,
 
+  preventMenuOpen: false,
+
+
   actions: {
 
     toggleMenu: function () {
@@ -30,6 +33,9 @@ export default Ember.Component.extend({
           _self.set('visible', false);
         });
       } else {
+        if (this.get('preventMenuOpen')) {
+          return;
+        }
         if (this.get('onOpen') && (!this.get('items') || this.get('cache') === false)) {
           _self.set('activeWrapper', null);
           _self.set('isLoading', true);

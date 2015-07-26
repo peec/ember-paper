@@ -3,7 +3,8 @@ import PaperMenuAbstract from './paper-menu-abstract';
 
 export default Ember.Component.extend({
   tagName: 'md-select-value',
-  classNames: ['md-select-value', 'md-menu-origin'],
+  classNames: ['md-select-value'],
+
 
   menuAbstract: Ember.computed(function () {
     var container = this.nearestOfType(PaperMenuAbstract);

@@ -4,7 +4,6 @@ import PaperMenuAbstract from './paper-menu-abstract';
 var SELECT_EDGE_MARGIN = 8;
 
 
-
 function clamp(min, n, max) {
   return Math.max(min, Math.min(n, max));
 }
@@ -25,6 +24,25 @@ export default PaperMenuAbstract.extend({
   interaction: true,
   placeholder: null,
   wrapperClass: 'md-select-menu-container',
+
+  attributeBindings: ['tabindex', 'readonlyAttr:readonly', 'multipleAttr:multiple'],
+  tabindex: Ember.computed('readonly', function () {
+    return this.get('readonly') ? -1 : 0;
+  }),
+  readonly: null,
+  multiple: null,
+
+  readonlyAttr: Ember.computed('readonly', function () {
+    return this.get('readonly') ? 'readonly' : null;
+  }),
+  multipleAttr: Ember.computed('multiple', function () {
+    return this.get('multiple') ? 'multiple' : null;
+  }),
+
+  preventMenuOpen: Ember.computed('disabled', function () {
+    return !!this.get('disabled');
+  }),
+
 
   label: Ember.computed('model', 'itemLabelCallback', function () {
     if (!this.get('model')) {
@@ -53,6 +71,35 @@ export default PaperMenuAbstract.extend({
     tempNode.remove();
     return hasFloating;
   }),
+
+  keyDown (e) {
+    var KeyCodes = this.get('constants').KEYCODE;
+    var allowedCodes = [
+      KeyCodes.get('SPACE'),
+      KeyCodes.get('ENTER'),
+      KeyCodes.get('UP_ARROW'),
+      KeyCodes.get('DOWN_ARROW')
+    ];
+
+    if (allowedCodes.indexOf(e.keyCode) !== -1 ) {
+      // prevent page scrolling on interaction
+      e.preventDefault();
+      this.send('toggleMenu');
+    } else {
+      if (e.keyCode <= 90 && e.keyCode >= 31) {
+        e.preventDefault();
+        /* todo. use paper-select-menu's optNodeForKeyboardSearch.
+        var node = this.optNodeForKeyboardSearch(e);
+        if (!node) return;
+        this.set('focusedNode', node || this.get('focusedNode'));
+        if (node) {
+          node.focus();
+        }*/
+      }
+    }
+  },
+
+
 
 
   /**

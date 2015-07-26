@@ -6,6 +6,7 @@ var clearSearchTimeout, optNodes, optText;
 var CLEAR_SEARCH_AFTER = 300;
 
 
+
 export default Ember.Component.extend({
   tagName: 'md-select-menu',
   classNames: ['md-default-theme'],
@@ -43,6 +44,32 @@ export default Ember.Component.extend({
   },
 
 
+  optNodeForKeyboardSearch (e) {
+    if (clearSearchTimeout) {
+      clearTimeout(clearSearchTimeout);
+    }
+    clearSearchTimeout = setTimeout(function() {
+      clearSearchTimeout = undefined;
+      searchStr = '';
+      optText = undefined;
+      optNodes = undefined;
+    }, CLEAR_SEARCH_AFTER);
+    searchStr += String.fromCharCode(e.keyCode);
+    var search = new RegExp('^' + searchStr, 'i');
+    if (!optNodes) {
+      optNodes = this.$().find('md-option');
+      optText = new Array(optNodes.length);
+      optNodes.each(function(i, el) {
+        optText[i] = el.textContent.trim();
+      });
+    }
+    for (var i = 0; i < optText.length; ++i) {
+      if (search.test(optText[i])) {
+        return optNodes[i];
+      }
+    }
+  },
+
 
   focusOption(direction) {
     var optionsArray = this.$().find('md-option').toArray();
@@ -75,33 +102,6 @@ export default Ember.Component.extend({
   },
   focusPrevOption() {
     this.focusOption('prev');
-  },
-
-
-  optNodeForKeyboardSearch (e) {
-    if (clearSearchTimeout) {
-      clearTimeout(clearSearchTimeout);
-    }
-    clearSearchTimeout = setTimeout(function() {
-      clearSearchTimeout = undefined;
-      searchStr = '';
-      optText = undefined;
-      optNodes = undefined;
-    }, CLEAR_SEARCH_AFTER);
-    searchStr += String.fromCharCode(e.keyCode);
-    var search = new RegExp('^' + searchStr, 'i');
-    if (!optNodes) {
-      optNodes = this.$().find('md-option');
-      optText = new Array(optNodes.length);
-      optNodes.each(function(i, el) {
-        optText[i] = el.textContent.trim();
-      });
-    }
-    for (var i = 0; i < optText.length; ++i) {
-      if (search.test(optText[i])) {
-        return optNodes[i];
-      }
-    }
   }
 
 });

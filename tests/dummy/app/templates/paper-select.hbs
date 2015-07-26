@@ -16,7 +16,7 @@
 <div layout="row">
     {{paper-input label="Street Name" value=street}}
     {{paper-input label="City" value=city}}
-    {{#paper-select placeholder="State" model=userState}}
+    {{#paper-select disabled=disableSelect placeholder="State" model=userState}}
       {{#each states as |state|}}
         {{#paper-option value=state.abbrev}}
           {{state.abbrev}}
@@ -25,6 +25,9 @@
     {{/paper-select}}
 </div>
 
+<p>
+  {{paper-checkbox label="Disable select" checked=disableSelect}}
+</p>
 <h3>Template</h3>
 {{#code-block language='handlebars'}}{{/code-block}}
 
@@ -44,7 +47,7 @@
       {{/paper-select}}
     </md-input-container>
     <md-input-container>
-      {{#paper-select placeholder="Size" model=topping}}
+      {{#paper-select placeholder="Topping" model=topping}}
         {{#paper-optgroup label="Meats"}}
           {{#each meatToppings as |topping|}}
             {{#paper-option value=topping.name}}
