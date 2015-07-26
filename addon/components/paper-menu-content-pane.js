@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import PaperMenuAbstract from './paper-menu-abstract';
-import PaperMenuContainer from './paper-menu-container';
 
 export default Ember.Component.extend({
   tagName: 'md-menu-content',

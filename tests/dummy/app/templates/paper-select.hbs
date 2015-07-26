@@ -9,21 +9,60 @@
 
 {{#paper-content classNames="md-padding"}}
 <div class="doc-content">
-  <h3>Basic Usage</h3>
+<h2>Basic Usage</h2>
 
 
-    <h1 class="md-title">Enter an address</h1>
-    <div layout="row">
-        {{paper-input label="Street Name" value=street}}
-        {{paper-input label="City" value=city}}
-        {{#paper-select placeholder="State" model=userState}}
-          {{#each states as |state|}}
-            {{#paper-option value=state.abbrev}}
-              {{state.abbrev}}
+<h1 class="md-title">Enter an address</h1>
+<div layout="row">
+    {{paper-input label="Street Name" value=street}}
+    {{paper-input label="City" value=city}}
+    {{#paper-select placeholder="State" model=userState}}
+      {{#each states as |state|}}
+        {{#paper-option value=state.abbrev}}
+          {{state.abbrev}}
+        {{/paper-option}}
+      {{/each}}
+    {{/paper-select}}
+</div>
+
+<h3>Template</h3>
+{{#code-block language='handlebars'}}{{/code-block}}
+
+
+<h2>Option groups</h2>
+
+
+<h1 class="md-title">Pick your pizza below</h1>
+<div layout="row">
+    <md-input-container>
+      {{#paper-select placeholder="Size" model=pizzaSize}}
+        {{#each sizes as |size|}}
+          {{#paper-option value=size}}
+            {{size}}
+          {{/paper-option}}
+        {{/each}}
+      {{/paper-select}}
+    </md-input-container>
+    <md-input-container>
+      {{#paper-select placeholder="Size" model=topping}}
+        {{#paper-optgroup label="Meats"}}
+          {{#each meatToppings as |topping|}}
+            {{#paper-option value=topping.name}}
+              {{topping.name}}
             {{/paper-option}}
           {{/each}}
-        {{/paper-select}}
-    </div>
+        {{/paper-optgroup}}
+        {{#paper-optgroup label="Veg"}}
+          {{#each vegToppings as |topping|}}
+            {{#paper-option value=topping.name}}
+              {{topping.name}}
+            {{/paper-option}}
+          {{/each}}
+        {{/paper-optgroup}}
+      {{/paper-select}}
+    </md-input-container>
+</div>
+
 
 <h3>Template</h3>
 {{#code-block language='handlebars'}}{{/code-block}}
