@@ -39,7 +39,7 @@ export default Ember.Component.extend({
   positionMenu(el) {
     // containerNode = wrapper
     var containerNode = el[0],
-    // md-menu-content / any other child.
+    // md-menu-content / any other child.z
       openMenuNode = el[0].firstElementChild,
       openMenuNodeRect = openMenuNode.getBoundingClientRect(),
     // body
