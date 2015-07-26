@@ -23,19 +23,25 @@ function getOffsetRect(node) {
 export default PaperMenuAbstract.extend({
   tagName: 'md-select',
   interaction: true,
+  placeholder: null,
   wrapperClass: 'md-select-menu-container',
 
-
-  placeholder: null,
-
-
-  label: Ember.computed('model', function () {
-    return this.get('model') ? this.get('model') : this.get('placeholder');
+  label: Ember.computed('model', 'itemLabelCallback', function () {
+    if (!this.get('model')) {
+      return this.get('placeholder');
+    }
+    if (this.get('itemLabelCallback')) {
+      return this.get('itemLabelCallback').call(this, this.get('model'));
+    }
+    return this.get('model');
   }),
 
   actions: {
     selectOption (model) {
       this.set('model', model);
+    },
+    deselectOption (model) {
+      this.set('model', null);
     }
   },
 
@@ -53,6 +59,9 @@ export default PaperMenuAbstract.extend({
    * Select menu have other animations then "md-menu", so we override the positionMenu here.
    */
   positionMenu(element) {
+    if (!this.get('visible')) {
+      return;
+    }
     var _self = this,
       opts = {
       target: this.$(),
@@ -188,7 +197,7 @@ export default PaperMenuAbstract.extend({
       element.addClass('md-active');
       selectNode.style[_self.get('constants').get('CSS').TRANSFORM] = '';
       if (focusedNode && !focusedNode.hasAttribute('disabled')) {
-        opts.focusedNode = focusedNode;
+        _self.set('focusedNode', focusedNode);
         focusedNode.focus();
       }
     });

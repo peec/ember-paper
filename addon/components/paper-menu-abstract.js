@@ -10,10 +10,12 @@ export default Ember.Component.extend({
   position: 'target',
   offset: '0 0',
 
+  onOpen: Ember.computed.alias('on-open'),
 
   animate: Ember.inject.service(),
   constants: Ember.inject.service(),
 
+  isLoading: false,
 
   actions: {
 
@@ -24,11 +26,37 @@ export default Ember.Component.extend({
           _self.set('visible', false);
         });
       } else {
-        this.set('activeWrapper', null);
-        this.set('visible', true);
+        if (this.get('onOpen') && !this.get('items')) {
+          _self.set('activeWrapper', null);
+          _self.set('isLoading', true);
+          _self.set('visible', true);
+          var promise = this.get('onOpen').call(this);
+          promise.then(function (params) {
+            _self.set('itemLabelCallback', params.label);
+            _self.set('items', params.data);
+            _self.set('isLoading', false);
+          }, function () {
+            _self.set('items', Ember.A([]));
+            _self.set('visible', false);
+            _self.set('isLoading', false);
+          });
+        } else {
+          this.set('activeWrapper', null);
+          this.set('visible', true);
+        }
       }
     }
   },
+
+  _itemObserver: Ember.observer('items', function () {
+    var _self = this;
+    Ember.run.scheduleOnce('afterRender', function () {
+      if (_self.get('activeWrapper')) {
+        _self.positionMenu(_self.get('activeWrapper').$());
+      }
+    });
+  }),
+
 
 
   registerWrapper (component) {

@@ -1,10 +1,14 @@
 {{paper-select-value value=label}}
 {{#if visible}}
   {{#paper-menu-container}}
-    <md-select-menu class="md-default-theme">
+    {{#paper-select-menu}}
       {{#paper-content class="md-default-theme"}}
-        {{yield}}
+        {{#if isLoading}}
+          <div>{{paper-progress-circular}}</div>
+        {{else}}
+          {{yield items}}
+        {{/if}}
       {{/paper-content}}
-    </md-select-menu>
+    {{/paper-select-menu}}
   {{/paper-menu-container}}
 {{/if}}

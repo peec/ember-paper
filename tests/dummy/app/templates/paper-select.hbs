@@ -68,5 +68,31 @@
 {{#code-block language='handlebars'}}{{/code-block}}
 
 
+
+<h2>Options with async search</h2>
+
+
+<div layout="column" layout-align="center center">
+  <p>Select can call an arbitrary function on show. If this function returns a promise, it will display a loading indicator while it is being resolved:</p>
+  <div layout="column" layout-align="center center" style="height: 100px;">
+    {{#paper-select on-open=onUserLoad placeholder="Assign to a user" model=selectedUser as |items|}}
+      {{#each items as |user|}}
+        {{#paper-option value=user}}
+          {{user.name}}
+        {{/paper-option}}
+      {{/each}}
+    {{/paper-select}}
+
+    {{#if selectedUser}}
+      <p>You have selected the user <code>{{selectedUser.name}}</code></p>
+    {{/if}}
+  </div>
+</div>
+
+
+<h3>Template</h3>
+{{#code-block language='handlebars'}}{{/code-block}}
+
+
 </div>
 {{/paper-content}}

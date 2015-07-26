@@ -17,6 +17,44 @@ export default Ember.Controller.extend({
     "insane (42-inch)"
   ]),
 
+
+
+  /**
+   * Fake promise to fetch data, here you would use ember-data, jQuery.ajax or whatever you want.
+   */
+  onUserLoad: function () {
+    var _self = this;
+    return new Promise(function(resolve) {
+      // Just wait for 800ms to 2 seconds for a fake progress, so it feels like a query.
+      var waitMS = Math.floor(Math.random() * 2000) + 800;
+
+      var dataFromServer = Ember.A([
+        { id: 1, name: 'Scooby Doo' },
+        { id: 2, name: 'Shaggy Rodgers' },
+        { id: 3, name: 'Fred Jones' },
+        { id: 4, name: 'Daphne Blake' },
+        { id: 5, name: 'Velma Dinkley' },
+      ]);
+
+
+      Ember.run.later(_self, function() {
+        /**
+         * Two arguments to the resolve:
+         * - data from the server
+         * - callback to be able to get the "label".
+         */
+        resolve({
+          data: dataFromServer,
+          label: function (item) {
+            // using ember data, this might be "item.get('name')"
+            return item.name;
+          }
+        });
+      }, waitMS);
+
+    });
+  },
+
   toppings: Ember.A([
     { category: 'meat', name: 'Pepperoni' },
     { category: 'meat', name: 'Sausage' },
@@ -35,5 +73,8 @@ export default Ember.Controller.extend({
   vegToppings: Ember.computed('toppings.@each', function () {
     return this.get('toppings').filter(function (item) { return item.category === 'veg'; });
   })
+
+
+
 
 });
