@@ -1,5 +1,6 @@
 import Ember from 'ember';
 
+
 export default Ember.Controller.extend({
 
   userState: '',
@@ -24,7 +25,7 @@ export default Ember.Controller.extend({
    */
   onUserLoad: function () {
     var _self = this;
-    return new Promise(function(resolve) {
+    return new Ember.RSVP.Promise(function(resolve) {
       // Just wait for 800ms to 2 seconds for a fake progress, so it feels like a query.
       var waitMS = Math.floor(Math.random() * 2000) + 800;
 

@@ -35,7 +35,9 @@ export default Ember.Component.extend({
         if (ev.keyCode >= 31 && ev.keyCode <= 90) {
           var optNode = this.optNodeForKeyboardSearch(ev);
           this.get('menuAbstract').set('focusedNode', optNode || this.get('menuAbstract').get('focusedNode'));
-          optNode && optNode.focus();
+          if (optNode) {
+            optNode.focus();
+          }
         }
     }
   },
@@ -58,9 +60,14 @@ export default Ember.Component.extend({
         index--;
       }
       newOption = optionsArray[index];
-      if (newOption.hasAttribute('disabled')) newOption = undefined;
-    } while (!newOption && index < optionsArray.length - 1 && index > 0)
-    newOption && newOption.focus();
+      if (newOption.hasAttribute('disabled')) {
+        newOption = undefined;
+      }
+    } while (!newOption && index < optionsArray.length - 1 && index > 0);
+
+    if (newOption) {
+      newOption.focus();
+    }
     this.get('menuAbstract').set('focusedNode', newOption);
   },
   focusNextOption() {
@@ -72,7 +79,9 @@ export default Ember.Component.extend({
 
 
   optNodeForKeyboardSearch (e) {
-    clearSearchTimeout && clearTimeout(clearSearchTimeout);
+    if (clearSearchTimeout) {
+      clearTimeout(clearSearchTimeout);
+    }
     clearSearchTimeout = setTimeout(function() {
       clearSearchTimeout = undefined;
       searchStr = '';

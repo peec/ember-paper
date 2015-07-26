@@ -15,7 +15,11 @@ export default Ember.Component.extend({
   animate: Ember.inject.service(),
   constants: Ember.inject.service(),
 
+  /* async: is true if promise was not resolved. */
   isLoading: false,
+
+  /* cache async requests */
+  cache: true,
 
   actions: {
 
@@ -26,7 +30,7 @@ export default Ember.Component.extend({
           _self.set('visible', false);
         });
       } else {
-        if (this.get('onOpen') && !this.get('items')) {
+        if (this.get('onOpen') && (!this.get('items') || this.get('cache') === false)) {
           _self.set('activeWrapper', null);
           _self.set('isLoading', true);
           _self.set('visible', true);

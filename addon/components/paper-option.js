@@ -37,7 +37,7 @@ export default BaseFocusable.extend(RippleMixin, {
   },
 
   keyDown (ev) {
-    if (ev.keyCode == this.get('constants').KEYCODE.get('ENTER') || ev.keyCode == this.get('constants').KEYCODE.get('SPACE')) {
+    if (ev.keyCode === this.get('constants').KEYCODE.get('ENTER') || ev.keyCode === this.get('constants').KEYCODE.get('SPACE')) {
       this.selectListener(ev);
     }
   },

@@ -40,7 +40,7 @@ export default PaperMenuAbstract.extend({
     selectOption (model) {
       this.set('model', model);
     },
-    deselectOption (model) {
+    deselectOption () {
       this.set('model', null);
     }
   },
