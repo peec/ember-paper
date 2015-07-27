@@ -1,17 +1,20 @@
 import Ember from 'ember';
-import PaperMenuAbstract from './paper-menu-abstract';
 
 export default Ember.Component.extend({
   tagName: 'md-select-value',
   classNames: ['md-select-value'],
+  classNameBindings: ['isPlaceholder:md-select-placeholder'],
 
-
-  menuAbstract: Ember.computed(function () {
-    var container = this.nearestOfType(PaperMenuAbstract);
-    return container;
+  isPlaceholder: Ember.computed('value', function () {
+    return !this.get('value');
   }),
 
-  click () {
-    this.get('menuAbstract').send('toggleMenu');
-  }
+  label: Ember.computed('isPlaceholder', function () {
+    if (this.get('isPlaceholder')) {
+      return this.get('placeholder');
+    } else {
+      return this.get('value');
+    }
+  })
+
 });

@@ -25,6 +25,8 @@ export default PaperMenuAbstract.extend({
   placeholder: null,
   wrapperClass: 'md-select-menu-container',
 
+  classNames: ['md-default-theme'],
+
   attributeBindings: ['tabindex', 'readonlyAttr:readonly', 'multipleAttr:multiple'],
   tabindex: Ember.computed('readonly', function () {
     return this.get('readonly') ? -1 : 0;
@@ -46,13 +48,17 @@ export default PaperMenuAbstract.extend({
 
   label: Ember.computed('model', 'itemLabelCallback', function () {
     if (!this.get('model')) {
-      return this.get('placeholder');
+      return null;
     }
     if (this.get('itemLabelCallback')) {
       return this.get('itemLabelCallback').call(this, this.get('model'));
     }
     return this.get('model');
   }),
+
+  click () {
+    this.send('toggleMenu');
+  },
 
   actions: {
     selectOption (model) {
