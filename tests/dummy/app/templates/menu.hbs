@@ -19,11 +19,25 @@
         {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
         {{#if menu.visible}}
           {{#paper-menu-content width=4}}
+
             {{#each items as |item|}}
               {{#paper-menu-item action="openSomething"}}
                 {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
               {{/paper-menu-item}}
             {{/each}}
+
+            {{#paper-menu-item action="openSomething" disabled=true}}
+              {{paper-icon icon="adb" class="md-menu-align-target"}} This is disabled.
+            {{/paper-menu-item}}
+
+            {{paper-divider}}
+
+            {{#each items as |item|}}
+              {{#paper-menu-item action="openSomething"}}
+                {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
+              {{/paper-menu-item}}
+            {{/each}}
+
           {{/paper-menu-content}}
         {{/if}}
       {{/paper-menu}}

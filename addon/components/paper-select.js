@@ -21,9 +21,7 @@ function getOffsetRect(node) {
 
 export default PaperMenuAbstract.extend({
   tagName: 'md-select',
-  interaction: true,
   placeholder: null,
-  wrapperClass: 'md-select-menu-container',
 
   classNames: ['md-default-theme'],
 
