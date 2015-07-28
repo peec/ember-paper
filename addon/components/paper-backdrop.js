@@ -4,29 +4,31 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: 'md-backdrop',
   classNames: ['md-default-theme'],
-
-  classNameBindings: ['opaque:md-opaque', 'isLockedOpen:md-locked-open'],
+  classNameBindings: ['opaque:md-opaque', 'isLockedOpen:md-locked-open', 'opaque:ng-enter'],
 
 
   // Hammer event handler for tapping backdrop
   tapHammer: null,
 
-  subscribeToTouchEvents: Ember.on('didInsertElement', function() {
-    var parent = this.get('parentView').get('parentView').$();
-    var el = this.$().detach();
-    parent.prepend(el);
-
+  didInsertElement () {
     var hammer = new Hammer(this.get('element'));
     hammer.on('tap', Ember.run.bind(this, this.onTap));
     this.set('tapHammer', hammer);
-  }),
+  },
+
+  willDestroyElement () {
+    var copy = this.$().clone();
+
+    Ember.run.later(() => {
+      copy.remove();
+    }, 0.2 * 1000);
+  },
 
   onTap (e) {
     e.preventDefault();
 
     this.sendAction('tap');
   }
-
 
 
 });
