@@ -10,13 +10,16 @@
 
 {{#paper-content classNames="md-padding"}}
 <div class="doc-content">
-  <ul class="paper-list-inline">
-    <li>{{paper-input label="Name" value=name}}</li>
-    <li>{{paper-input label="E-mail" type="email" value=email}}</li>
-    <li>{{paper-input label="Password" type="password"}}</li>
-    <li>{{paper-input label="Submission date" type="date" value=date}}</li>
-    <li>{{paper-input label="Company (disabled)" type="text" value="Google" disabled=true}}</li>
-  </ul>
+  <div layout="" layout-sm="column">
+      {{paper-input flex=30 label="Name" value=name}}
+      {{paper-input flex=30 label="E-mail" type="email" value=email}}
+      {{paper-input flex=40 label="Password" type="password"}}
+  </div>
+  <div layout="" layout-sm="column">
+      {{paper-input flex=true label="Submission date" type="date" value=date}}
+      {{paper-input flex=true label="Company (disabled)" type="text" value="Google" disabled=true}}
+  </div>
+
   {{paper-input textarea=true label="Biography" value=biography}}
   <p>Name: {{name}}</p>
   <p>Email: {{email}}</p>
