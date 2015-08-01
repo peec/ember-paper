@@ -110,7 +110,7 @@ export default PaperMenuAbstract.extend({
    * Select menu have other animations then "md-menu", so we override the positionMenu here.
    */
   positionMenu(element) {
-    if (!this.get('visible')) {
+    if (!this.get('isOpen')) {
       return;
     }
     var _self = this,

@@ -19,31 +19,26 @@
       attributes ensure that the menu elements align</p>
 
   <div layout-align="center center" layout="column">
-      {{#paper-menu as |menu|}}
+      {{#paper-menu width=4 as |menu|}}
         {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
-        {{#if menu.visible}}
-          {{#paper-menu-content width=4}}
+      {{else}}
+        {{#each items as |item|}}
+          {{#paper-menu-item action="openSomething"}}
+            {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
+          {{/paper-menu-item}}
+        {{/each}}
 
-            {{#each items as |item|}}
-              {{#paper-menu-item action="openSomething"}}
-                {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
-              {{/paper-menu-item}}
-            {{/each}}
+        {{#paper-menu-item action="openSomething" disabled=true}}
+          {{paper-icon icon="adb" class="md-menu-align-target"}} This is disabled.
+        {{/paper-menu-item}}
 
-            {{#paper-menu-item action="openSomething" disabled=true}}
-              {{paper-icon icon="adb" class="md-menu-align-target"}} This is disabled.
-            {{/paper-menu-item}}
+        {{paper-divider}}
 
-            {{paper-divider}}
-
-            {{#each items as |item|}}
-              {{#paper-menu-item action="openSomething"}}
-                {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
-              {{/paper-menu-item}}
-            {{/each}}
-
-          {{/paper-menu-content}}
-        {{/if}}
+        {{#each items as |item|}}
+          {{#paper-menu-item action="openSomething"}}
+            {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
+          {{/paper-menu-item}}
+        {{/each}}
       {{/paper-menu}}
 </div>
 
@@ -53,15 +48,12 @@
   \{{#paper-button target=menu action="toggleMenu" icon-button=true}}
       \{{paper-icon class="md-menu-origin" icon="local-phone"}}
   \{{/paper-button}}
-  \{{#if menu.visible}}
-    \{{#paper-menu-content width=4}}
-      \{{#each items as |item|}}
-        \{{#paper-menu-item action="openSomething"}}
-          \{{paper-icon icon=item.icon class="md-menu-align-target"}} \{{item.title}}
-        \{{/paper-menu-item}}
-      \{{/each}}
-    \{{/paper-menu-content}}
-  \{{/if}}
+\{{else}}
+  \{{#each items as |item|}}
+    \{{#paper-menu-item action="openSomething"}}
+      \{{paper-icon icon=item.icon class="md-menu-align-target"}} \{{item.title}}
+    \{{/paper-menu-item}}
+  \{{/each}}
 \{{/paper-menu}}{{/code-block}}
 
 {{/paper-card-content}}
@@ -82,48 +74,39 @@
     <div class="menus" layout-fill="" layout-wrap="" layout="row" layout-align="space-between center">
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
             <p>Target Mode Positioning (default)</p>
-            {{#paper-menu as |menu|}}
+            {{#paper-menu is-open=menuTwoIsOpen as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
-              {{#if menu.visible}}
-                {{#paper-menu-content width=4}}
-                  {{#each items as |item|}}
-                    {{#paper-menu-item action="openSomething"}}
-                      {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
-                    {{/paper-menu-item}}
-                  {{/each}}
-                {{/paper-menu-content}}
-              {{/if}}
+            {{else}}
+              {{#each items as |item|}}
+                {{#paper-menu-item action="openSomething"}}
+                  {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
+                {{/paper-menu-item}}
+              {{/each}}
             {{/paper-menu}}
         </div>
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
             <p>Target mode with <code class="paper">md-offset</code></p>
-            {{#paper-menu offset="0 -5" as |menu|}}
+            {{#paper-menu is-open=menuThreeIsOpen offset="0 -5" as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
-              {{#if menu.visible}}
-                  {{#paper-menu-content width=4}}
-                    {{#each items as |item|}}
-                      {{#paper-menu-item action="openSomething"}}
-                        {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
-                      {{/paper-menu-item}}
-                    {{/each}}
-                  {{/paper-menu-content}}
-              {{/if}}
+            {{else}}
+              {{#each items as |item|}}
+                {{#paper-menu-item action="openSomething"}}
+                  {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
+                {{/paper-menu-item}}
+              {{/each}}
             {{/paper-menu}}
         </div>
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
             <p><code class="paper">md-position-mode="target-right target"</code></p>
-            {{#paper-menu position="target-right target" as |menu|}}
+            {{#paper-menu is-open=menuFourIsOpen position="target-right target" as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
-              {{#if menu.visible}}
-                {{#paper-menu-content width=4}}
-                  {{#each items as |item|}}
-                    {{#paper-menu-item action="openSomething"}}
-                        <p style="width: 190px;">{{item.title}}</p>
-                        {{paper-icon icon=item.icon class="md-menu-align-target"}}
-                    {{/paper-menu-item}}
-                  {{/each}}
-                {{/paper-menu-content}}
-              {{/if}}
+            {{else}}
+              {{#each items as |item|}}
+                {{#paper-menu-item action="openSomething"}}
+                    <p style="width: 190px;">{{item.title}}</p>
+                    {{paper-icon icon=item.icon class="md-menu-align-target"}}
+                {{/paper-menu-item}}
+              {{/each}}
             {{/paper-menu}}
         </div>
     </div>
@@ -139,14 +122,11 @@ attributes to tell where it should position itself in respect to origin and alig
 </p>
 {{#code-block language='handlebars'}}\{{#paper-menu position="target-right target" as |menu|}}
   \{{#paper-button target=menu action="toggleMenu" icon-button=true}}\{{paper-icon class="md-menu-origin" icon="local-phone"}}\{{/paper-button}}
-  \{{#if menu.visible}}
-    \{{#paper-menu-content width=4}}
-      \{{#paper-menu-item action="openSomething"}}
-          &lt;p style="width: 190px;"&gt;Some title&lt;/p&gt;
-        \{{paper-icon icon="adb" class="md-menu-align-target"}}
-      \{{/paper-menu-item}}
-    \{{/paper-menu-content}}
-  \{{/if}}
+\{{else}}
+  \{{#paper-menu-item action="openSomething"}}
+      &lt;p style="width: 190px;"&gt;Some title&lt;/p&gt;
+    \{{paper-icon icon="adb" class="md-menu-align-target"}}
+  \{{/paper-menu-item}}
 \{{/paper-menu}}{{/code-block}}
 
 {{/paper-card-content}}
@@ -166,47 +146,38 @@ attributes to tell where it should position itself in respect to origin and alig
     <div class="menus" layout-fill="" layout-wrap="" layout="row" layout-align="space-between center">
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
             <p>Wide menu (<code class="paper">width=6</code>)</p>
-            {{#paper-menu as |menu|}}
+            {{#paper-menu width=6 as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
-              {{#if menu.visible}}
-                {{#paper-menu-content width=6}}
-                  {{#each options as |item|}}
-                    {{#paper-menu-item action="openSomething"}}
-                        <span class="md-menu-align-target">Option</span> {{item}}
-                    {{/paper-menu-item}}
-                  {{/each}}
-                {{/paper-menu-content}}
-              {{/if}}
+            {{else}}
+              {{#each options as |item|}}
+                {{#paper-menu-item action="openSomething"}}
+                    <span class="md-menu-align-target">Option</span> {{item}}
+                {{/paper-menu-item}}
+              {{/each}}
             {{/paper-menu}}
         </div>
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
             <p>Medium menu (<code class="paper">width=4</code>)</p>
-            {{#paper-menu offset="0 -5" as |menu|}}
+            {{#paper-menu width=4 offset="0 -5" as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
-              {{#if menu.visible}}
-                {{#paper-menu-content width=4}}
-                  {{#each options as |item|}}
-                    {{#paper-menu-item action="openSomething"}}
-                        <span class="md-menu-align-target">Option</span> {{item}}
-                    {{/paper-menu-item}}
-                  {{/each}}
-                {{/paper-menu-content}}
-              {{/if}}
+            {{else}}
+              {{#each options as |item|}}
+                {{#paper-menu-item action="openSomething"}}
+                    <span class="md-menu-align-target">Option</span> {{item}}
+                {{/paper-menu-item}}
+              {{/each}}
             {{/paper-menu}}
         </div>
         <div layout="column" flex="33" flex-sm="100" layout-align="center center">
             <p>Small menu (<code class="paper">width=2</code>)</p>
-            {{#paper-menu position="target-right target" as |menu|}}
+            {{#paper-menu width=2 position="target-right target" as |menu|}}
               {{#paper-button target=menu action="toggleMenu" icon-button=true}}{{paper-icon class="md-menu-origin" icon="local-phone"}}{{/paper-button}}
-              {{#if menu.visible}}
-                  {{#paper-menu-content width=2}}
-                    {{#each options as |item|}}
-                      {{#paper-menu-item action="openSomething"}}
-                          <span class="md-menu-align-target">Option</span> {{item}}
-                      {{/paper-menu-item}}
-                    {{/each}}
-                  {{/paper-menu-content}}
-              {{/if}}
+            {{else}}
+              {{#each options as |item|}}
+                {{#paper-menu-item action="openSomething"}}
+                    <span class="md-menu-align-target">Option</span> {{item}}
+                {{/paper-menu-item}}
+              {{/each}}
             {{/paper-menu}}
         </div>
     </div>
@@ -216,9 +187,9 @@ attributes to tell where it should position itself in respect to origin and alig
 
 <h3>Template</h3>
 {{#code-block language='handlebars'}}...
-\{{#paper-menu-content width=4}}
+\{{#paper-menu width=4}}
   ...
-\{{/paper-menu-content}}
+\{{/paper-menu}}
 ...{{/code-block}}
 
 {{/paper-card-content}}
