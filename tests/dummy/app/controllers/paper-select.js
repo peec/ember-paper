@@ -44,16 +44,15 @@ export default Ember.Controller.extend({
          * - data from the server
          * - callback to be able to get the "label".
          */
-        resolve({
-          data: dataFromServer,
-          label: function (item) {
-            // using ember data, this might be "item.get('name')"
-            return item.name;
-          }
-        });
+        resolve(dataFromServer);
       }, waitMS);
 
     });
+  },
+
+  userLabelCallback: function (item) {
+    // using ember data, this might be "item.get('name')"
+    return item.name;
   },
 
   toppings: Ember.A([

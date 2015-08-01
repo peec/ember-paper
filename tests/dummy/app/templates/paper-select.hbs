@@ -29,7 +29,13 @@
   {{paper-checkbox label="Disable select" checked=disableSelect}}
 </p>
 <h3>Template</h3>
-{{#code-block language='handlebars'}}{{/code-block}}
+{{#code-block language='handlebars'}}\{{#paper-select disabled=disableSelect placeholder="State" model=userState}}
+  \{{#each states as |state|}}
+    \{{#paper-option value=state.abbrev}}
+      \{{state.abbrev}}
+    \{{/paper-option}}
+  \{{/each}}
+\{{/paper-select}}{{/code-block}}
 
 
 <h2>Option groups</h2>
@@ -68,7 +74,22 @@
 
 
 <h3>Template</h3>
-{{#code-block language='handlebars'}}{{/code-block}}
+{{#code-block language='handlebars'}}\{{#paper-select placeholder="Topping" model=topping}}
+  \{{#paper-optgroup label="Meats"}}
+    \{{#each meatToppings as |topping|}}
+      \{{#paper-option value=topping.name}}
+        \{{topping.name}}
+      \{{/paper-option}}
+    \{{/each}}
+  \{{/paper-optgroup}}
+  \{{#paper-optgroup label="Veg"}}
+    \{{#each vegToppings as |topping|}}
+      \{{#paper-option value=topping.name}}
+        \{{topping.name}}
+      \{{/paper-option}}
+    \{{/each}}
+  \{{/paper-optgroup}}
+\{{/paper-select}}{{/code-block}}
 
 
 
@@ -78,7 +99,7 @@
 <div layout="column" layout-align="center center">
   <p>Select can call an arbitrary function on show. If this function returns a promise, it will display a loading indicator while it is being resolved:</p>
   <div layout="column" layout-align="center center" style="height: 100px;">
-    {{#paper-select on-open=onUserLoad placeholder="Assign to a user" model=selectedUser as |items|}}
+    {{#paper-select on-open=onUserLoad item-label-callback=userLabelCallback placeholder="Assign to a user" model=selectedUser as |items|}}
       {{#each items as |user|}}
         {{#paper-option value=user}}
           {{user.name}}
@@ -94,7 +115,17 @@
 
 
 <h3>Template</h3>
-{{#code-block language='handlebars'}}{{/code-block}}
+<p>
+    We provide two callbacks to the paper-select component <code class="paper">on-open</code> and <code class="paper">item-label-callback</code>.
+    The item-label-callback will resolve the label of the object's given from the <code class="paper">on-open</code> callback.
+</p>
+{{#code-block language='handlebars'}}\{{#paper-select on-open=onUserLoad item-label-callback=userLabelCallback placeholder="Assign to a user" model=selectedUser as |items|}}
+  \{{#each items as |user|}}
+    \{{#paper-option value=user}}
+      \{{user.name}}
+    \{{/paper-option}}
+  \{{/each}}
+\{{/paper-select}}{{/code-block}}
 
 
 </div>

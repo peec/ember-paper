@@ -18,6 +18,8 @@ export default Ember.Component.extend({
 
   preventMenuOpen: false,
 
+  itemLabelCallback: Ember.computed.alias('item-label-callback'),
+
 
   actions: {
 
@@ -36,9 +38,8 @@ export default Ember.Component.extend({
           _self.set('isLoading', true);
           _self.set('visible', true);
           var promise = this.get('onOpen').call(this);
-          promise.then(function (params) {
-            _self.set('itemLabelCallback', params.label);
-            _self.set('items', params.data);
+          promise.then(function (data) {
+            _self.set('items', data);
             _self.set('isLoading', false);
           }, function () {
             _self.set('items', Ember.A([]));
