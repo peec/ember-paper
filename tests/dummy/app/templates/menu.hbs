@@ -24,12 +24,14 @@
       {{else}}
         {{#each items as |item|}}
           {{#paper-menu-item action="openSomething"}}
-            {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
+            {{paper-icon icon=item.icon class="md-menu-align-target"}}
+            <span>{{item.title}}</span>
           {{/paper-menu-item}}
         {{/each}}
 
         {{#paper-menu-item action="openSomething" disabled=true}}
-          {{paper-icon icon="adb" class="md-menu-align-target"}} This is disabled.
+          {{paper-icon icon="adb" class="md-menu-align-target"}}
+            <span>This is disabled.</span>
         {{/paper-menu-item}}
 
         {{paper-divider}}
@@ -51,7 +53,8 @@
 \{{else}}
   \{{#each items as |item|}}
     \{{#paper-menu-item action="openSomething"}}
-      \{{paper-icon icon=item.icon class="md-menu-align-target"}} \{{item.title}}
+      \{{paper-icon icon=item.icon class="md-menu-align-target"}}
+      &lt;span&gt;\{{item.title}}&lt;/span&gt;
     \{{/paper-menu-item}}
   \{{/each}}
 \{{/paper-menu}}{{/code-block}}
@@ -79,7 +82,8 @@
             {{else}}
               {{#each items as |item|}}
                 {{#paper-menu-item action="openSomething"}}
-                  {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
+                  {{paper-icon icon=item.icon class="md-menu-align-target"}}
+                  <span>{{item.title}}</span>
                 {{/paper-menu-item}}
               {{/each}}
             {{/paper-menu}}
@@ -91,7 +95,8 @@
             {{else}}
               {{#each items as |item|}}
                 {{#paper-menu-item action="openSomething"}}
-                  {{paper-icon icon=item.icon class="md-menu-align-target"}} {{item.title}}
+                  {{paper-icon icon=item.icon class="md-menu-align-target"}}
+                  <span>{{item.title}}</span>
                 {{/paper-menu-item}}
               {{/each}}
             {{/paper-menu}}
@@ -108,6 +113,7 @@
                 {{/paper-menu-item}}
               {{/each}}
             {{/paper-menu}}
+
         </div>
     </div>
 </div>
