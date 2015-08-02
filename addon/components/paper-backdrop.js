@@ -9,6 +9,8 @@ export default Ember.Component.extend(AnimateMixin, {
 
   animated: Ember.computed.bool('opaque'),
 
+
+
   // Hammer event handler for tapping backdrop
   tapHammer: null,
 
@@ -23,5 +25,4 @@ export default Ember.Component.extend(AnimateMixin, {
     e.preventDefault();
     this.sendAction('tap');
   }
-
 });
