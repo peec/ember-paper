@@ -25,6 +25,8 @@ Router.map(function() {
   this.route('icons');
   this.route('slider');
   this.route('dialog');
+  this.route('paper-select');
+  this.route('menu');
 });
 
 export default Router;
